@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GETTING STARTED WITH BRACKETS</title>
+        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:200,300,400" rel="stylesheet"> 
+        
+        <!--STYLE FOR PAGE-->
+       <style type="text/css">
+           
+           html{
+               background: url("bg.jpg") center no-repeat fixed;
+               background-size: cover;
+           }
+
+           .container-fluid{
+               background-color: rgba(242,242,242,0.24);
+           }
+           
+           body{
+            font-family: 'Lato', sans-serif;
+            font-size: 1.6em;
+            background-color: rgba(255,255,255,0);
+           }
+           
+           .logo{
+               margin-top: 2em;
+               margin-bottom: 2em;
+           }
+           
+           .google-search{
+               border-top: 2px solid rgba(179,179,179,0.2);
+               border-bottom: 2px solid rgba(179,179,179,0.2);
+               margin-top: 4em;
+               margin-bottom: 1em;
+               padding: 2em;
+               padding-top: 3em;
+               padding-bottom: 4em;
+           }
+           
+           .google-search input[type=text]{
+               display: inline;
+               width: 11.12em;
+           }
+           
+           .duckduckgo input[type=text]{
+               display: inline;
+               width: 11.42em;
+               margin-bottom: 0.8em;
+           }
+           
+           .google-search input[type=image]{
+               margin-bottom: 10px;
+               width: 14.8em;
+               height: 6.8em;
+           }
+           
+           .duckduckgo input[type=image], .wolframalfa input[type=image]{
+               margin-bottom: 50px;
+               width: 14.8em;
+               height: 6.8em;
+           }
+           
+           .google-search h3{
+                font-weight: 300;
+                font-size: 1.5em;
+           }
+           
+           .yahoo-search, .duckduckgo, .wolframalfa{
+               border-top: 2px solid rgba(179,179,179,0.2);
+               border-bottom: 2px solid rgba(179,179,179,0.2);
+               margin-top: 2em;
+               margin-bottom: 1em;
+               padding: 2em;
+               padding-top: 2.4em;
+               padding-bottom: 2.4em
+           }
+           
+           .yahoo-search input[type=image]{
+               width: 14em;
+               height: 4em;
+               margin-bottom: 40px;
+           }
+                   
+             .all{
+                background-color: #ccffcc;    
+                border-top: 2px solid rgba(179,179,179,0.2);
+                border-bottom: 2px solid rgba(179,179,179,0.2);
+                margin-top: 2em;
+                margin-bottom: 0;
+                padding: 2em;
+                
+           }
+           
+           .all h2{
+               font-weight: 200;
+               font-size: 3em;
+               margin-bottom: 0.4em;
+           }
+           
+           .wolframalfa h2{
+               font-weight: 200;
+               font-size: 1.6em;
+               margin-bottom: 0.4em;
+           }
+</style>
+
+        
+    <script>
+        //Combined search
+            function combinedSearch(){
+                googlesend();
+                yahoosend();
+                duckduckgosend();
+                wolfsend();
+            }
+
+        
+        //****************############################ GOOGLE CODE ##################******************* 
+            function googlesend() {
+                var strings = document.getElementById("inputstring").value;
+                var gstring = "http://www.google.com/search?q=";
+                var intitestrg = "";
+                var ftypestrg ="";
+                var numstrg = "";
+                var sitestrg = "";
+    
+                for(var i=0; i<document.search.googleop.length; i++){    
+                    if(document.search.googleop[i].checked){
+                        switch(i){
+                            case 0:
+                                var addstring = "allintitle:"; 
+                                intitestrg = addstring;
+                                break;
+                            case 1:
+                                var ftypes =  document.getElementById("ftype").value;
+                                var addstring = "&as_filetype=" + ftypes;
+                                ftypestrg = addstring;
+                                break;
+                            case 2:
+                                var nums =  document.getElementById("num").value;
+                                var addstring = "&num=" + nums;  
+                                numstrg = addstring;
+                                break;
+                            case 3:
+                                var sitess =  document.getElementById("sites").value;
+                                var addstring = "&sitesearch=" + sitess;
+                                sitestrg = addstring;
+                                break;
+                            default:
+                                var out = gstring + strings ;
+                                window.open(out);
+                        }
+                    }
+                    // return true;
+                }
+                
+                var finalstring =gstring + intitestrg + strings + ftypestrg + numstrg + sitestrg; 
+                    window.open(finalstring);
+            }
+        
+        
+// ######################### YAHOO CODE ############################################## 
+         function yahoosend() {
+                var yahooops = document.getElementsByName("yahooop");
+                var strings1 = document.getElementById("inputstring").value;
+                var ystring = "http://search.yahoo.com/search?p=";
+    
+                if (yahooops[0].checked == true) {
+                   var  sstring = ystring + "intitle:"  + strings1 ;
+                    window.open(sstring);
+                  
+                }  else   {
+                    
+                    var finalstring = ystring + strings1 ;
+                    window.open(finalstring);
+                } 
+        
+        }
+           
+// ############################## Duckduckgo code ############################### 
+        
+            function duckduckgosend() {
+                var strings = document.getElementById("inputstring").value;
+                var dstring = "http://www.duckduckgo.com/?q=";
+                var tsearchstrg ="";
+                var sesearchstrg ="";
+                var nofullurls="";
+                
+    
+                for(var i=0; i<document.search2.duckduckgoop.length; i++){    
+                    if(document.search2.duckduckgoop[i].checked){
+                        switch(i){
+                            case 0:
+                                var tsearchs =  document.getElementById("tsearch").value;
+                                var addstring = "&df=" + tsearchs;
+                                tsearchstrg = addstring;
+                                break;
+                            case 1:
+                                var sesearchs =  document.getElementById("sesearch").value;
+                                var addstring = "&ia=" + sesearchs;  
+                                sesearchstrg = addstring;
+                                break;
+                            case 2:
+                                nofullurls = "&kaf=-1"; 
+                                break;
+                         
+                            default:
+                                var out = dstring + strings ;
+                                window.open(out);
+                        }
+                    }
+                    // return true;
+                }
+                
+                var finalstring =dstring + strings +tsearchstrg + sesearchstrg + nofullurls ; 
+                    window.open(finalstring);
+            }
+        
+//###################################### WOLFRAM ALPHA CODE ###############################################    
+        
+        function wolfsend() {
+                var strings = document.getElementById("inputstring").value;
+                var wstring = "https://www.wolframalpha.com/input/?i=";          
+                var finalstring = wstring + strings; 
+            
+                window.open(finalstring);
+            }
+        </script>
+    
+    </head>
+
+
+<!--  ****************************** SCRIPT CLOSED / BODY STARTED ****************-->
+
+<body>
+    
+    <div class="container logo">
+        <div class="col-sm-offset-3">
+            <input type="image" src="logo.png" width="550" height="200">
+        </div>
+    </div>
+     
+    <div class="container searchbox">
+        <form class="form-inline">
+            <div class="col-sm-offset-2">
+                <input type="text" size="80%" id="inputstring" background-color="#ffffff" placeholder="Enter search string" class="form-control">&emsp;
+                <input type="submit" value="SEARCH" onclick="return combinedSearch();" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+          
+<!-- ************************************ GOOGLE CODE ------------------------ -->            
+    <div class="container-fluid google-search">
+        <div class="row pull-left col-sm-12">
+            <input type="image" src="icons/google.png" class="col-sm-offset-5">
+        </div>
+         
+        <div class="row col-sm-12">
+            <form action="" method="POST" name="search">
+                <h3>OPTIONS:</h3> 
+                <input type="checkbox" name="googleop">&nbsp;INTITLE&ensp;
+                &emsp;
+                <input type="checkbox" name="googleop">&nbsp;FILE TYPE:&ensp;
+                <input type="text" id="ftype" placeholder="FILE FORMAT like pdf,mp3,mp4 etc" class="form-control">&ensp;      
+                &emsp;
+                <input type="checkbox" name="googleop">&nbsp;NUMBER OF RESULTS:&ensp;
+                <input type="text" id="num" placeholder="Enter no. of search results" class="form-control">&ensp;    
+                &emsp;
+                <input type="checkbox" name="googleop">&nbsp;SITE SEARCH:&ensp;
+                <input type="text" id="sites" placeholder="Website names(e.g., internetarchive.org)" class="form-control">&ensp;    
+                &emsp;
+                <input type="submit" class="btn btn-info" value="SEARCH" onclick="return googlesend();">&ensp;
+        </div>
+    </div>
+        
+ <!-- ##################################### YAHOO HTML CODE ####################-->           
+    <div class="container-fluid yahoo-search">
+   
+        <div class="row pull-left col-sm-12">
+            <input type="image" src="icons/yahoo.svg" class="col-sm-offset-5">
+        </div>
+        <div class="row col-sm-12">
+                <input type="checkbox" name="yahooop">&ensp;INTITLE &ensp;&ensp;
+                <input type="submit" value="SEARCH" onclick="return yahoosend();" class="btn btn-info">
+                <br><br>
+                <a href="https://answers.yahoo.com/" > YAHOO ANSWERS</a> &nbsp;<a href="https://policies.yahoo.com/us/en/yahoo/privacy/products/answers/index.htm">|  About</a>
+                <br>
+                <a href="https://messenger.yahoo.com/" > YAHOO MESSENGER</a>&nbsp; <a href="https://policies.yahoo.com/us/en/yahoo/privacy/products/msgr/index.htm">|  About</a>
+                <br>
+                <a href="https://www.yahoo.com/movies/?ref=gs" > YAHOO MOVIES</a>&nbsp; <a href="https://policies.yahoo.com/us/en/yahoo/privacy/products/movies/index.htm">|  About</a>
+                <br>
+                <a href="https://www.yahoo.com/news/?ref=gs" > YAHOO NEWS</a>&nbsp; <a href="https://policies.yahoo.com/us/en/yahoo/privacy/products/news/index.htm">|  About</a>
+                <br>
+            </form>
+        </div>
+    </div>
+    
+<!-- ##################################### Duckduckgo #################################### -->
+
+    <div class="container-fluid duckduckgo">
+        <div class="row pull-left col-sm-12">
+            <input type="image" src="icons/duckduckgo.png" class="col-sm-offset-5">
+        </div>
+        <div class="row col-sm-12">
+             <form action="" method="POST" name="search2">
+                <input type="checkbox" name="duckduckgoop">&nbsp;SEARCH BY DAY(d)/week(w)/month(m):&ensp;
+                <input type="text" id="tsearch" placeholder="search by past day/week/month based results" class="form-control">&ensp;      
+                &emsp;
+                <input type="checkbox" name="duckduckgoop">&nbsp;SEARCH ON Duckduckgo web/videos/images/meanings/news&ensp;
+                <input type="text" id="sesearch" placeholder="ENTER web/videos/images/meanings/news for search seaction" class="form-control">&ensp;      
+                &emsp;
+                <input type="checkbox" name="duckduckgoop">&nbsp;NO FULL URL ON RESULTS&ensp;    
+                &emsp;
+                
+                <input type="submit" value="SEARCH" onclick="return duckduckgosend();" class="btn btn-info">
+                <br><br>
+            </form>
+        </div>
+    </div>
+    
+<!-- ####################################  wolfram alfa ##################################-->        
+    <div class="container-fluid wolframalfa">
+        <div class="row pull-left col-sm-12">
+            <input type="image" src="icons/wolframalpha.jpg" class="col-sm-offset-5">
+        </div>
+      <div class="row col-sm-12">
+            <form action="" method="POST" name="search3">
+                <input type="submit" class="btn btn-info" value="SEARCH" onclick="return wolfsend();">&ensp;
+                <br><br>
+                <a href="https://www.wolframalpha.com/tour/what-is-wolframalpha.html">| ABOUT WOLFRAM ALFA |</a>
+                &nbsp;  &nbsp;  &nbsp; <h2>SOME WOLFRAM ALPHA SEARCH EXAMPLES</h2>
+                <a href="https://www.wolframalpha.com/examples/Math.html">MATH EXAMPLES &nbsp;|</a>&nbsp;
+                
+                <a href="https://www.wolframalpha.com/examples/WordsAndLinguistics.html"> WORDS AND LINGUISTICS EXAMPLES &nbsp;|</a>&nbsp;
+                
+                <a href="https://www.wolframalpha.com/examples/Chemistry.html" > PEOPLE AND HISTORY EXAMPLES &nbsp;|</a>&nbsp;
+                <br>
+                <a href="https://www.wolframalpha.com/examples/Engineering.html" > ENGINEERING EXAMPLES &nbsp;|</a> &nbsp;
+                
+                <a href="https://www.wolframalpha.com/examples/WebAndComputerSystems.html"> WEB AND COMPUTER SYSTEMS EXAMPLES</a>
+                <br>
+        </div>
+    </div>
+    
+<!--#################################### ALL CLOSED #################################################-->    
+<!--********************************########################################**********************************-->    
+<!-- INFORMATIONS AND HYPERLINKS FOR THE SEARCH ENGINES -->
+<!--********************************########################################**********************************-->    
+
+    <div class="container-fluid all">   
+        <h2>YOUTUBE RELATIONS</h2>
+        <a href="http://www.mp3fiber.com/">MP3FIBER</a><br>
+        It is an online youtube video converter.
+        This site can change the youtube videos to variety of audio formats like mp3(360kbps),mp4a etc.<br>
+        <br>
+        <a href="http://en.savefrom.net/">SAVEFROM.NET</a><br>
+        This site make youtube video availabe to quality for download.  
+        <br><br>
+        <a href="http://www.tubechop.com/">TUBE CHOP</a><br>
+        Crop youtube video online.
+        <br><br>
+        <hr>           
+        <h2>IMAGES MAGIC </h2>  
+        <a href="http://www.pictureresize.org/online-images-converter.html">ONLINE IMAGE CONVERTER</a><br>
+        convert image format to following supported formats list (BMP, DIB, RLE, JPEG, JFIF, JPG, JPE, JPEG 2000, J2K, JP2, JPC, J2C, PNG, PSD, PDD, PCD, TIFF, TIF, FAX, G3N, G3F, ICO, GIF, WMF, EMF, WMZ, EMZ, PCX, DCX, CUT, PXM, PPM, PBM, PGM, TGA, TARGA, VDA, ICB, VST, WIN, CRW, CR2, NEF, PEF, RAF, X3F, RAW, BAY, ORF, MRW, SRF, MRW to BMP, JPEG, JPEG 2000, ICO, PNG, GIF, PCX, TGA, PXM, TIFF)
+        <br></br>
+        
+        <a href="http://www.resizeimage.net/">ONLINE IMAGE RESIZER</a><br>
+        help in resizing image online.
+        <br><br>
+        <a href="https://www.tinypng.com/"> IMAGE COMPRESSOR</a><br>
+        online image compressor.
+        <br><br>
+        <a href="http://www.compressnow.com/"> COMPRESSNOW</a><br>
+        online image compressor.
+        <br><br>    
+        <hr>
+        <h2>OTHERS </h2>
+        <a href="https://www.archive.org"> INTERNET ARCHIVE </a><br>
+        Internet Archive is a non-profit library of millions of free books, movies, software, music, websites, and more.
+        <br><br>
+    </div>
+</body>
+</html>
